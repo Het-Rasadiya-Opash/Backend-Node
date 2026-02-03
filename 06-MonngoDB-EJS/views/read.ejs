@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Profiles</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+ 
+</head>
+<body class="bg-gray-950 text-white font-sans flex items-center justify-center min-h-screen p-4">
+  <div class="w-full max-w-lg">
+    <div class="mb-10">
+      <a class="text-primary hover:text-primary-hover transition duration-300 flex items-center" href="/user">
+        <svg xmlns="http://www.w3.org" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back To Home
+      </a>
+    </div>
+    <h1 class="text-4xl font-extrabold mb-8 text-center text-gray-100">
+      All Users
+    </h1>
+    <div class="space-y-4">
+      <% if(users.length>0) { %>
+        <% users.forEach(function(user) {%>
+          <div class="user flex items-center p-5 bg-gray-800 rounded-xl shadow-2xl hover:bg-gray-700 transition duration-300 transform hover:scale-[1.02] cursor-pointer">
+            <div class="w-16 h-16 bg-primary rounded-full flex items-center overflow-hidden justify-center text-2xl font-semibold text-gray-900 mr-4 shadow-lg flex-shrink-0">
+              <img src="<%=user.img%>" class="w-full h-full object-cover" alt="">
+            </div>
+            <div class="flex-grow">
+              <h3 class="text-xl font-bold tracking-tight mb-0.5 text-white">
+                <%=user.name%>
+              </h3>
+              <h5 class="text-gray-400 text-sm mb-3"><%=user.email%></h5>
+              <div class="flex space-x-4 text-sm">
+                <a href="/user/edit/<%=user._id%>" class="text-teal-400 hover:text-teal-200 transition duration-300 font-medium">Edit User</a>
+                <a href="/user/delete/<%=user._id%>" class="text-red-500 hover:text-red-300 transition duration-300 font-medium">Delete User</a>
+              </div>
+            </div>
+          </div>
+          <%})%>
+            <%}else {%>
+              <h3 class="text-center">No Users Yet</h3>
+              <%}%>
+    </div>
+  </div>
+</body>
+</html>
